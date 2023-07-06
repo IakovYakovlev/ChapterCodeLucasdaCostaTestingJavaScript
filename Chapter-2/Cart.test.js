@@ -3,7 +3,8 @@ const Cart = require("./Cart.js");
 
 const cart = new Cart();
 cart.addToCart("cheesecake");
+cart.removeFromCart("cheesecake");
 
-assert.deepStrictEqual(cart.items, ["cheesecake"]);
+assert.deepStrictEqual(cart.items, []);
 
-console.log("The addToCart function can add an item to the cart");
+console.log("The removeFromCart function can remove an item from the cart");
