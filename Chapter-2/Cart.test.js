@@ -1,10 +1,16 @@
-const assert = require("assert");
 const Cart = require("./Cart.js");
 
-const cart = new Cart();
-cart.addToCart("cheesecake");
-cart.removeFromCart("cheesecake");
+test("The addToCart function can add an item to the cart", () => {
+  const cart = new Cart();
+  cart.addToCart("cheesecake");
 
-assert.deepStrictEqual(cart.items, []);
+  expect(cart.items).toEqual(["cheesecake"]);
+});
 
-console.log("The removeFromCart function can remove an item from the cart");
+test("The removeFromCart function can remove an item from the cart", () => {
+  const cart = new Cart();
+  cart.addToCart("cheesecake");
+  cart.removeFromCart("cheesecake");
+
+  expect(cart.items).toEqual([]);
+});
