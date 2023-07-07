@@ -1,16 +1,11 @@
-const Cart = require("./Cart.js");
+// @ts-nocheck
+const { db, closeConnection } = require("./dbConnection")
+const { createCart } = require("./cart");
 
-test("The addToCart function can add an item to the cart", () => {
-  const cart = new Cart();
-  cart.addToCart("cheesecake");
-
-  expect(cart.items).toEqual(["cheesecake"]);
-});
-
-test("The removeFromCart function can remove an item from the cart", () => {
-  const cart = new Cart();
-  cart.addToCart("cheesecake");
-  cart.removeFromCart("cheesecake");
-
-  expect(cart.items).toEqual([]);
+test("createCart creates a cart fro a username", async () => {
+  await db("carts").truncate();
+  await createCart("Lucas da Costa");
+  const result = await db.select("username").from("carts");
+  expect(result).toEqual([{ username: "Lucas da Costa"}]);
+  await closeConnection();
 });
